@@ -1,11 +1,16 @@
 <?php
+
+    session_start();
     include 'functions.php';
 
     if(isset($_GET['passwordLength'])) {
         $passwordLength = $_GET['passwordLength'];
         $generatedPassword = generateRandomPassword($passwordLength);
 
-        echo "<p>Your generated password is: $generatedPassword</p>";
+        $_SESSION['generatedPassword'] = $generatedPassword;
+
+        header('Location: ./area_password.php');
+        exit();
     }
 ?>
 <!DOCTYPE html>
